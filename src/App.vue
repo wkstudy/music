@@ -1,16 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <router-view/>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
-
+import { defineComponent, onMounted } from 'vue'
+import { search } from '@api/index';
 export default defineComponent({
   name: 'App',
-  components: {
-    HelloWorld
+  setup() {
+    onMounted(async () => {
+      const res = await search({
+        keywords: '海阔天空'
+      })
+      console.log(res)
+    })
   }
 })
 </script>
@@ -22,6 +25,5 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
