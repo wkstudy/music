@@ -11,3 +11,9 @@ export enum SearchType {
   'ALL' = 1018, // 综合
 }
 
+export enum BannerResourceType {
+  'PC' = 0,
+  'ANDROID' = 1,
+  'IPHONE' = 2,
+  'IPAD' = 3,
+}
