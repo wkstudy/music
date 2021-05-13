@@ -61,3 +61,6 @@ module.exports = {
 }
 ```
 5. `lib-flexible` + `postcss-px2rem` 的插件配置报错,替换为`postcss-pxtorem`,两者的配置项会有所不同，[参考原因](https://github.com/vitejs/vite/issues/3046)
+
+6. `npm run build`失败，原因是无法解析alias定义的路径名称，暂时不用alias定义路径打包
+[图2](img/2.png)

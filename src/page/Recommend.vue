@@ -20,7 +20,7 @@
               <img :src="item.picUrl" :alt="item.name">
               <div class="recommend__item__detail">
                 <span class="iconfont icon-erji"></span>
-                {{item.playCount > 9999 ? `${parseInt(item.playCount / 10000)}万` : item.playCount}}</div>
+                {{item.playCount > 9999 ? `${Math.floor(item.playCount / 10000)}万` : item.playCount}}</div>
             </div>
             <div class="recommend__item__desc">{{item.name}}</div>
           </div>
@@ -39,7 +39,6 @@ export default defineComponent({
   setup() {
     const bannerList: BannerItem[] = reactive([]); // banner数组
     const songList: SongSheetItem[] = reactive([]); // 歌单
-    
     banner({type: BannerResourceType.ANDROID}).then(res => {
       bannerList.length = 0; // 清空数组小妙招
       bannerList.push(...res.banners);

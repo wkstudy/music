@@ -6,5 +6,4 @@ import 'vant/lib/index.css';
 import './assets/fonts/iconfont.css'
 import './assets/css/normalize.css'
 import 'lib-flexible';
-
 createApp(App).use(router).use(Vant).mount('#app');

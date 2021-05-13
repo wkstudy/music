@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
-import { search } from '@api/index';
+import { search } from './api/index';
 export default defineComponent({
   name: 'App',
   setup() {
