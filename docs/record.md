@@ -64,3 +64,6 @@ module.exports = {
 
 6. `npm run build`失败，原因是无法解析alias定义的路径名称，暂时不用alias定义路径打包
 [图2](img/2.png)
+
+
+7. 配置 @rollup/plugin-commonjs 出错, 暂时对这个插件的作用不太了解，是把项目里的commonjs语法转为es6吗？[error](https://github.com/vitejs/vite/issues/3394)
