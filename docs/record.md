@@ -67,3 +67,7 @@ module.exports = {
 
 
 7. 配置 @rollup/plugin-commonjs 出错, 暂时对这个插件的作用不太了解，是把项目里的commonjs语法转为es6吗？[error](https://github.com/vitejs/vite/issues/3394)
+
+8. 热更新失效很常见，需要手动刷新
+
+9. .vue文件不加后缀vetur报错`import SongSheetHeader from '../components/songsheet/SongSheetHeader.vue'`

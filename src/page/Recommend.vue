@@ -15,12 +15,12 @@
       <h3>推荐歌单</h3>
       <van-grid :border="false" column-num="3">
         <van-grid-item v-for="item in songList" :key="item">
-          <div class="recommend__item">
+          <div class="recommend__item" @click="pageToSongSheet(item.id)">
             <div class="recommend__item__main">
               <img :src="item.picUrl" :alt="item.name">
               <div class="recommend__item__detail">
                 <span class="iconfont icon-erji"></span>
-                {{item.playCount > 9999 ? `${Math.floor(item.playCount / 10000)}万` : item.playCount}}</div>
+                {{numberChange(item.playCount)}}</div>
             </div>
             <div class="recommend__item__desc">{{item.name}}</div>
           </div>
@@ -31,14 +31,19 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, reactive, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { BannerItem, SongSheetItem } from '../api/data';
 import { banner, recommendSongList } from '../api/index';
 import { BannerResourceType } from '../utils/CONST';
+import { numberChange } from '../utils/utils';
 
 export default defineComponent({
   setup() {
     const bannerList: BannerItem[] = reactive([]); // banner数组
     const songList: SongSheetItem[] = reactive([]); // 歌单
+    const router = useRouter();
+    const route = useRoute();
+
     banner({type: BannerResourceType.ANDROID}).then(res => {
       bannerList.length = 0; // 清空数组小妙招
       bannerList.push(...res.banners);
@@ -48,9 +53,15 @@ export default defineComponent({
       songList.length = 0;
       songList.push(...res.result);
     })
+
+    const pageToSongSheet = (id: number) => {
+      router.push(`/songsheet?id=${id}`)
+    }
     return {
       bannerList,
       songList,
+      pageToSongSheet,
+      numberChange
     }
   },
 })

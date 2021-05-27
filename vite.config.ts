@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue';
 import styleImport from 'vite-plugin-style-import';
 import legacy from '@vitejs/plugin-legacy';
-import commonjs from '@rollup/plugin-commonjs';
 import path from 'path';
 
 // https://vitejs.dev/config/
@@ -21,7 +20,6 @@ export default defineConfig({
     legacy({
       targets: ['defaults', 'not IE 11']
     }),
-    commonjs(),
   ],
   resolve: {
     alias: {

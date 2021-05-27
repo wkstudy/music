@@ -8,12 +8,6 @@ import { search } from './api/index';
 export default defineComponent({
   name: 'App',
   setup() {
-    onMounted(async () => {
-      const res = await search({
-        keywords: '海阔天空'
-      })
-      console.log(res)
-    })
   }
 })
 </script>
