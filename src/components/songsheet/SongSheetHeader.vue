@@ -70,7 +70,6 @@ export default defineComponent({
 <style lang="less" scoped>
 .container {
   position: relative;
-  height: 215px;
 
   .bg {
     filter: blur(20px);

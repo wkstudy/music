@@ -22,7 +22,7 @@
                 <span class="iconfont icon-erji"></span>
                 {{numberChange(item.playCount)}}</div>
             </div>
-            <div class="recommend__item__desc">{{item.name}}</div>
+            <div class="recommend__item__desc" v-html="item.name"></div>
           </div>
         </van-grid-item>
       </van-grid>
@@ -123,7 +123,9 @@ export default defineComponent({
     .recommend__item__desc {
       margin-top: 2px;
       padding: 0px 2px;
+      box-sizing: border-box;
       height: 50px;
+      word-break:break-all;
       text-align: left;
       font-size: 12px;
       line-height: 1.4;
