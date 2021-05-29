@@ -38,7 +38,6 @@ export default defineComponent({
         playlistDetail({id: +query.id})
           .then(res => {
             info.detail = res;
-            console.log(info.detail)
           })
       } else {
         router.push('/index')

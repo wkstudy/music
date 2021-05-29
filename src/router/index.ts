@@ -11,21 +11,25 @@ const router = createRouter({
       // 首页
       path: '/index',
       name: 'index',
-      redirect: '/recommend',
       component: () => import('@/page/Index.vue'),
       children: [
         {
-          path: '/recommend',
+          // 默认渲染 推荐页面
+          path: '',
+          component: () => import('@/page/Recommend.vue'),
+        },
+        {
+          path: 'recommend',
           name: 'recommend',
           component: () => import('@/page/Recommend.vue'),
         },
         {
-          path: '/singer',
+          path: 'singer',
           name: 'singer',
           component: () => import('@/page/Singer.vue'),
         },
         {
-          path: '/rank',
+          path: 'rank',
           name: 'rank',
           component: () => import('@/page/Rank.vue'),
         }

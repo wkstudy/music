@@ -24,13 +24,13 @@ export default defineComponent({
     const handleClick = (name: number) => {
       switch(name) {
         case 0:
-          router.push('/recommend');
+          router.push('/index/recommend');
           break;
         case 1:
-          router.push('/singer');
+          router.push('/index/singer');
           break;
         case 2:
-          router.push('/rank');
+          router.push('/index/rank');
           break;
       }
     }

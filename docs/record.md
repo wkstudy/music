@@ -71,3 +71,4 @@ module.exports = {
 8. 热更新失效很常见，需要手动刷新
 
 9. .vue文件不加后缀vetur报错`import SongSheetHeader from '../components/songsheet/SongSheetHeader.vue'`
+10. 运行`npm run serve` 和运行`npm run dev`得到的结果不一样，在dev下正常的在serve时不正常，无法正常使用（好像运行的是之前版本的代码、路由也有点问题）
