@@ -5,7 +5,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, toRef, toRefs } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 export default defineComponent({
@@ -13,7 +13,7 @@ export default defineComponent({
     title: String,
   },
   setup(props) {
-    const { title } = props;
+    const { title } = toRefs(props);
     const router = useRouter();
 
     const back = () => {

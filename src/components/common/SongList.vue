@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="list__cnt">
-    <div v-for="(track, index) in tracks" :key="track.id" class="tracks">
+    <div v-for="(track, index) in tracks" :key="track.id" class="tracks" @click="handleClick(track.id)">
       <div class="tracks__pos">{{index + 1}}</div>
       <div class="tracks__cnt">
         <div class="tracks__cnt__name ellipsis">{{track.name}}</div>
@@ -23,7 +23,7 @@
 </div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, toRefs } from 'vue'
 import { numberChange, songAuthor } from '../../utils/utils';
 import { Track } from '../../api/data'
 
@@ -38,14 +38,19 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
-    const { collect, tracks } = props;
+  setup(props, context) {
+    const { collect, tracks } = toRefs(props);
+
+    const handleClick = (id: String) => {
+      context.emit('play', id);
+    }
 
     return {
       collect,
       numberChange,
       tracks,
-      songAuthor
+      songAuthor,
+      handleClick
     }
   },
 })

@@ -12,7 +12,9 @@
     "qs": "^6.10.1",
     "vant": "^3.0.16",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.6"
+    "vue-router": "^4.0.6",
+    "vuex": "^4.0.1",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.0",

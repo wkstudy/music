@@ -40,7 +40,7 @@
 </section>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, toRefs } from 'vue'
 import { numberChange } from '../../utils/utils';
 // import { Creator } from '../../api/data';
 export default defineComponent({
@@ -55,7 +55,7 @@ export default defineComponent({
 
   },
   setup(props) {
-    const { bgImg, iconImg, playCount, title, creator} = props;
+    const { bgImg, iconImg, playCount, title, creator} = toRefs(props);
     return {
       bgImg,
       iconImg,

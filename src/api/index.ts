@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { BannerResourceType } from '../utils/CONST';
 import axios from './config';
-import { BannerResType, SearchReqData, SongSheetDetail, SongSheetRes } from './data';
+import { BannerResType, SearchReqData, SongSheetDetail, SongSheetRes, SongUrlsResDataType } from './data';
 // 查询
 export const search =(params: SearchReqData) => {
   return axios.get('/search', {
@@ -34,4 +34,10 @@ export const playlistDetail = (params: { id: number, s?: number }) => {
   return axios.get('/playlist/detail', {
     params,
   }) as Promise<SongSheetDetail>
+}
+
+export const getSongUrls = (params: { id: string }) => {
+  return axios.get('/song/url', {
+    params,
+  }) as Promise<SongUrlsResDataType>
 }

@@ -8,7 +8,7 @@
     :title="detail.playlist.name"
     :creator="detail.playlist.creator"
   />
-  <song-list v-if="detail.playlist" :collect="detail.playlist.subscribedCount" :tracks="detail.playlist.tracks"></song-list>
+  <song-list v-if="detail.playlist" :collect="detail.playlist.subscribedCount" :tracks="detail.playlist.tracks" @play="handlePlay"></song-list>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, watch, toRefs, onMounted } from 'vue'
@@ -17,6 +17,8 @@ import SongSheetHeader from '@/components/songsheet/SongSheetHeader.vue'
 import SongList from '@/components/common/SongList.vue';
 import NavBar from '@/components/common/NavBar.vue';
 import { playlistDetail } from '../api';
+import { useStore } from '../store'
+import { SongSheetDetail } from '../api/data';
 
 export default defineComponent({
   name: 'SongSheet',
@@ -28,6 +30,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const route = useRoute();
+    const store = useStore();
     const { query } = route;
     const info = reactive({
       detail: {}, // 歌单详情
@@ -52,8 +55,16 @@ export default defineComponent({
       updateData();
     })
 
+    const handlePlay = (id: number) => {
+      const tracks = (info.detail as SongSheetDetail).playlist.tracks;
+      store.commit('MutateDisplayStatus', {show: true})
+      store.commit('MutateSongList', {tracks})
+      store.commit('MutateCurrentPos', {curPos: tracks.findIndex(item => item.id === id)})
+      store.dispatch('ActSongUrls', {id: tracks.map(item => item.id).join(',')})
+    }
     return {
       ...toRefs(info),
+      handlePlay
     }
   },
 })
