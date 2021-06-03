@@ -3,6 +3,12 @@ import vue from '@vitejs/plugin-vue';
 import styleImport from 'vite-plugin-style-import';
 import legacy from '@vitejs/plugin-legacy';
 import path from 'path';
+import proxy from './proxy';
+const chalk = require("chalk");
+
+const rd = process.env.npm_config_rd || 'default'
+console.log(chalk.blue("连接代理服务端： ") + chalk.cyan(rd) + '  ' + chalk.green(proxy[rd]));
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,5 +37,12 @@ export default defineConfig({
   },
   server: {
     cors: true,
+    proxy: {
+      "/api/": {
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        target: proxy[rd],
+        changeOrigin: true
+      },
+    }
   }
 })

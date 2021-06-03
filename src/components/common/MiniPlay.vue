@@ -2,11 +2,11 @@
 <div class="mini-play" v-show="show">
   <div class="cnt">
     <div class="cnt__icon">
-      <img :class="[pause ? 'cnt__icon--pause' : '']" :src="songList[curPos].al.picUrl" :alt="songList[curPos].name">
+      <img :class="[pause ? 'cnt__icon--pause' : '']" :src="songList[curPos] && songList[curPos].al.picUrl || ''" :alt="songList[curPos] && songList[curPos].name || ''">
     </div>
     <div class="cnt__main">
-      <div class="cnt__main__name ellipsis">{{songList[curPos].name}}</div>
-      <div class="cnt__main__author ellipsis">{{songAuthor(songList[curPos].ar)}}</div>
+      <div class="cnt__main__name ellipsis">{{songList[curPos] && songList[curPos].name}}</div>
+      <div class="cnt__main__author ellipsis">{{songAuthor(songList[curPos] && songList[curPos].ar || [])}}</div>
     </div>
     <div class="cnt__play">
       <van-circle
@@ -14,7 +14,7 @@
         v-model:current-rate="currentRate"
         layer-color="rgba(212, 68, 57, 0.5)"
         color="#D44439"
-        :rate="songList[curPos].dt / 1000"
+        :rate="songList[curPos] && songList[curPos].dt / 1000"
         :speed="speed"
       >
       <span @click="handlePlay" v-if="pause" class="iconfont icon-bofang1"></span>
@@ -25,23 +25,28 @@
       <span class="iconfont icon-yinleliebiao"></span>
     </div>
   </div>
-  <audio :src="songUrls[curPos].url" controls="controls" ref="audio" @play="playMusic" @pause="pauseMusic">
+  <audio autoplay :src="`https://music.163.com/song/media/outer/url?id=${songList[curPos] && songList[curPos].id}.mp3`" controls="controls" ref="audio" @play="playMusic" @pause="pauseMusic">
     您的浏览器不支持 audio 标签。
   </audio>
 </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import { useStore } from '../../store'
 import { songAuthor } from '../../utils/utils';
-
+//  TODO 播放按钮的进度还不对，无法停止， speed设置为0， 能停下来吗？
 export default defineComponent({
   setup() {
     const store = useStore();
     const currentRate = ref(0);
     const audio = ref(null);
     const pause = computed(() => store.state.pause);
-    const speed = computed(() => pause.value ?  0 : 1); // speed为0时播放按钮不动
+    const show = computed(() => store.state.show);
+    const curPos = computed(() => store.state.curPos);
+    const songUrls = computed(() => store.state.songUrls);
+    const songList = computed(() => store.state.songList);
+    //  songList.value[curPos.value].dt / 1000 （1000是把毫秒变成秒） / 100（因为进度条最大是100）
+    const speed = computed(() => pause.value ?  0 : songList.value[curPos.value as number].dt / 1000 / 100); // speed为0时播放按钮不动
 
     const playMusic = () => {
       (audio.value as unknown as HTMLAudioElement).play();
@@ -50,23 +55,27 @@ export default defineComponent({
       (audio.value as unknown as HTMLAudioElement).pause()
     }
 
-    setInterval(() => {
-      console.log(speed.value);
-      
-    }, 2000)
-    const handlePlay = () => {
-      if (pause.value) {        
+    watch(curPos, () => {
+      // 歌曲切换后，初始进度为0
+      currentRate.value = 0;
+    })
+
+    watch(pause,(val) => {
+      if(!val) {
         playMusic()
       } else {
         pauseMusic()
       }
+    })
+
+    const handlePlay = () => {
       store.commit('MutatePause', {pause: !pause.value})
     }
     return {
-      show: computed(() => store.state.show),
-      curPos: computed(() => store.state.curPos),
-      songUrls: computed(() => store.state.songUrls),
-      songList: computed(() => store.state.songList),
+      show,
+      curPos,
+      songUrls,
+      songList,
       pause,
       audio,
       songAuthor,
@@ -83,9 +92,12 @@ export default defineComponent({
   bottom: 0;
   left: 0;
   right: 0;
+  height: 60px;
+  background-color: white;
 
   .cnt {
     display: flex;
+    height: 60px;
     justify-content: space-between;
     align-items: center;
 
@@ -108,6 +120,7 @@ export default defineComponent({
 
     .cnt__main {
       flex: 1;
+      max-width: 203px;
 
       .cnt__main__name {
         margin-bottom: 2px;
@@ -140,6 +153,11 @@ export default defineComponent({
         color: rgb(212, 68, 57);
       }
     }
+  }
+
+  audio {
+    position: absolute;
+    left: -10000;
   }
 }
 

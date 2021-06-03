@@ -58,6 +58,7 @@ export default defineComponent({
     const handlePlay = (id: number) => {
       const tracks = (info.detail as SongSheetDetail).playlist.tracks;
       store.commit('MutateDisplayStatus', {show: true})
+      store.commit('MutatePause', {pause: false})
       store.commit('MutateSongList', {tracks})
       store.commit('MutateCurrentPos', {curPos: tracks.findIndex(item => item.id === id)})
       store.dispatch('ActSongUrls', {id: tracks.map(item => item.id).join(',')})

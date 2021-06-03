@@ -152,12 +152,18 @@ export default defineComponent({
     color: rgb(241, 241, 241);
     z-index: 1000;
     font-weight: 500;
+    justify-content: space-between;
   }
 }
 :deep(.van-grid-item__content) {
   background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
 }
 :deep(.van-hairline--top::after) {
   border-top-width: 0;
+}
+:deep(.van-grid-item__content::after) {
+  border-width: 0;
 }
 </style>
