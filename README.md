@@ -2,9 +2,9 @@
 
 This template should help get you started developing with Vue 3 and Typescript in Vite.
 
-推荐页面
-歌单列表
-播放页面
+- [x] 推荐页面
+- [x] 歌单列表
+- [x] 播放页面
 
 <!-- # TODO 歌单列表 -->
 <!-- # TODO 播放页面 -->
@@ -16,6 +16,15 @@ This template should help get you started developing with Vue 3 and Typescript i
 [图片](docs/img/desc.png)
 ```
 注 : 部分用户反馈获取的 url 会 403,hwaphon找到的解决方案是当获取到音乐的 id 后，将 https://music.163.com/song/media/outer/url?id=id.mp3 以 src 赋予 Audio 即可播放
+```
+
+### 启动
+```
+npm run dev
+```
+### 打包
+```
+npm run build
 ```
 ## Recommended IDE Setup
 
