@@ -41,7 +41,7 @@ export default defineComponent({
   setup(props, context) {
     const { collect, tracks } = toRefs(props);
 
-    const handleClick = (id: String) => {
+    const handleClick = (id: number) => {
       context.emit('play', id);
     }
 

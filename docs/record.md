@@ -78,3 +78,4 @@ module.exports = {
 目前来看 `import.meta.env`是利用dotenv加载.env相关文件上的变量，  `process.env`是nodejs进程上的变量，无法互相访问
 
 12. 目前在项目中无法访问`process`,只能使用`import.meta.env`
+13. ts规范严格，有错误`npm run build`无法成功

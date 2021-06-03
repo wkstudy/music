@@ -42,17 +42,18 @@
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue'
 import { numberChange } from '../../utils/utils';
-// import { Creator } from '../../api/data';
+import { Creator } from '../../api/data';
 export default defineComponent({
   props: {
     bgImg: String,
-    playCount: Number,
+    playCount: {
+      type: Number as PropType<number>
+    },
     iconImg: String,
     title: {
       type: String as PropType<string>,
     },
-    creator: Object,
-
+    creator: Creator,
   },
   setup(props) {
     const { bgImg, iconImg, playCount, title, creator} = toRefs(props);
