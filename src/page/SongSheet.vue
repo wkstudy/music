@@ -33,7 +33,7 @@ export default defineComponent({
     const store = useStore();
     const { query } = route;
     const info = reactive({
-      detail: {}, // 歌单详情
+      detail: {} as SongSheetDetail, // 歌单详情
     });
 
     const updateData = () => {

@@ -19,7 +19,7 @@ export default defineComponent({
       store.commit('MutateDisplayStatus', {show: false})
       store.commit('MutatePause', {pause: true})
       store.commit('MutateSongList', {tracks: []})
-      store.commit('MutateCurrentPos', {curPos: undefined})
+      store.commit('MutateCurrentPos', {curPos: 0})
       store.dispatch('ActSongUrls', {id: ''})
     })
   }

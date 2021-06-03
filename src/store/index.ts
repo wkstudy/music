@@ -8,7 +8,7 @@ import { getSongUrls } from '../api/index';
 export interface State {
   show: boolean, // 是否展示
   pause: boolean, // 是否暂停
-  curPos: number | undefined, // 当前播放的歌曲在列表中的下标
+  curPos: number, // 当前播放的歌曲在列表中的下标
   songUrls: Datum[], // 歌曲资源地址
   songList: Track[], // 播放列表
 }

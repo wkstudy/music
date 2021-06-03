@@ -72,3 +72,9 @@ module.exports = {
 
 9. .vue文件不加后缀vetur报错`import SongSheetHeader from '../components/songsheet/SongSheetHeader.vue'`
 10. 运行`npm run serve` 和运行`npm run dev`得到的结果不一样，在dev下正常的在serve时不正常，无法正常使用（好像运行的是之前版本的代码、路由也有点问题）
+
+
+11. `import.meta.env`和`process.env`上的变量有什么区别？
+目前来看 `import.meta.env`是利用dotenv加载.env相关文件上的变量，  `process.env`是nodejs进程上的变量，无法互相访问
+
+12. 目前在项目中无法访问`process`,只能使用`import.meta.env`
