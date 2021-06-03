@@ -38,11 +38,16 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props, context) {
+  emits: {
+    play: (payload: number) => {
+      return !isNaN(payload)
+    }
+  },
+  setup(props, { emit }) {
     const { collect, tracks } = toRefs(props);
 
     const handleClick = (id: number) => {
-      context.emit('play', id);
+      emit('play', id);
     }
 
     return {

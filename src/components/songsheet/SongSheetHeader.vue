@@ -12,8 +12,8 @@
     <div class="header__title">
       <div class="header__title__info">{{title}}</div>
       <div class="header__title__creator">
-        <img :src="creator.avatarUrl" alt="" class="avatar">
-        <div class="name">{{creator.nickname}}</div>
+        <img :src="creator && creator.avatarUrl" alt="" class="avatar">
+        <div class="name">{{creator && creator.nickname}}</div>
       </div>
     </div>
   </div>
@@ -40,14 +40,17 @@
 </section>
 </template>
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue'
+import { defineComponent, PropType, ref, toRefs } from 'vue'
 import { numberChange } from '../../utils/utils';
-import { Creator } from '../../api/data';
+// @ts-ignore：暂时无法解析 自定义路径 的位置
+import { Creator } from '@api/data';
 export default defineComponent({
   props: {
+    aa: Number,
     bgImg: String,
     playCount: {
-      type: Number as PropType<number>
+      type: Number,
+      required: true,
     },
     iconImg: String,
     title: {

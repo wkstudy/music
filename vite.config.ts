@@ -27,12 +27,31 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@api': path.resolve(__dirname, 'src/api'),
-      '@util': '/src/util',
-      '@assets': path.resolve(__dirname, 'src/assets')
-    }
+    // alias: {
+    //   '@': path.resolve(__dirname, 'src'),
+    //   '@api': path.resolve(__dirname, 'src/api'),
+    //   '@utils': '/src/utils',
+    //   '@assets': path.resolve(__dirname, 'src/assets')
+    // },
+    alias: [
+      {
+        find: '@',
+        replacement: path.resolve(__dirname, 'src'),
+      },
+      {
+        find: '@api',
+        replacement: path.resolve(__dirname, 'src/api'),
+      },
+      {
+        find: '@utils',
+        replacement: path.resolve(__dirname, 'src/utils'),
+      },
+      {
+        find: '@assets',
+        replacement: path.resolve(__dirname, 'src/assets'),
+      }
+    ],
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.d.ts']
   },
   server: {
     cors: true,

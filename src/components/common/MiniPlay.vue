@@ -25,7 +25,7 @@
       <span class="iconfont icon-yinleliebiao"></span>
     </div>
   </div>
-  <audio autoplay :src="`https://music.163.com/song/media/outer/url?id=${songList[curPos] && songList[curPos].id}.mp3`" controls="controls" ref="audio" @play="playMusic" @pause="pauseMusic">
+  <audio autoplay :src="`https://music.163.com/song/media/outer/url?id=${songList[curPos] && songList[curPos].id}.mp3`" controls ref="audio" @play="playMusic" @pause="pauseMusic">
     您的浏览器不支持 audio 标签。
   </audio>
 </div>
@@ -81,7 +81,9 @@ export default defineComponent({
       songAuthor,
       currentRate,
       handlePlay,
-      speed
+      speed,
+      pauseMusic,
+      playMusic
     }
   },
 })

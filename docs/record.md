@@ -79,3 +79,26 @@ module.exports = {
 
 12. 目前在项目中无法访问`process`,只能使用`import.meta.env`
 13. ts规范严格，有错误`npm run build`无法成功
+14. `npm run dev `成功的情况下`npm run build`可能存在无数个报错（大部分是关于ts）
+15. `npm run build`时的ts报错
+```
+// songlist.vue
+const handleClick = (id: number) => {
+      emit('play', id);
+    }
+
+// songsheet.vue
+<div  @play="handlePlay"></div>
+
+
+const handlePlay = (id: Event) => {
+      store.commit('MutateCurrentPos', {curPos: tracks.findIndex(item => item.id === id as unknown as number)})
+    }
+
+id明明是个number,但必须定义为Event,否则build出错
+```
+16. build[官网说明](https://cn.vitejs.dev/guide/build.html#building-for-production)
+> 1. build默认打包的文件是要求 浏览器支持 esm script标签和esm动态导入的，可以配置的最低构建目标是es2015
+> 2. 可以通过@vitejs/plugin-legacy 插件支持其他浏览器，打包的文件包含传统版本的chunk（浏览器不支持esm时按需加载）和支持es特性的chunk, 因此打包的体积肯定会比较大
+[默认打包](img/3.png)
+[安装@vitejs/plugin-legacy](img/4.png)
