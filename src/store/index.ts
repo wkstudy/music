@@ -4,6 +4,7 @@ import { InjectionKey } from 'vue'
 import { Datum, Track } from '../api/data';
 import { getSongUrls } from '../api/index';
 
+// TODO 提供miniplay的封装方法，比如init() end() ,现在初始化时调用好几个commit()， 太麻烦了
 // 为 store state 声明类型
 export interface State {
   show: boolean, // 是否展示
