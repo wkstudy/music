@@ -2,7 +2,7 @@ import axios from "axios";
 import { Toast } from 'vant';
 
 // axios.defaults.baseURL = 'https://netease-cloud-music-api-three-sage.vercel.app';
-axios.defaults.baseURL = import.meta.env.MODE === 'development' ? '/api': '';
+axios.defaults.baseURL = import.meta.env.MODE === 'development' ? '/api': 'https://netease-cloud-music-api-three-sage.vercel.app';
 axios.defaults.timeout = 6000;
 axios.defaults.withCredentials = true;
 // 添加请求拦截器
