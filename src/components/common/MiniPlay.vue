@@ -46,7 +46,7 @@ export default defineComponent({
     const songUrls = computed(() => store.state.songUrls);
     const songList = computed(() => store.state.songList);
     //  songList.value[curPos.value].dt / 1000 （1000是把毫秒变成秒） / 100（因为进度条最大是100）
-    const speed = computed(() => pause.value ?  0 : songList.value[curPos.value as number].dt / 1000 / 100); // speed为0时播放按钮不动
+    const speed = computed(() => pause.value ?  0 : 100 / (songList.value[curPos.value as number].dt / 1000)); // speed为0时播放按钮不动
 
     const playMusic = () => {
       (audio.value as unknown as HTMLAudioElement).play();
