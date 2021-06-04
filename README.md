@@ -26,6 +26,11 @@ npm run dev
 ```
 npm run build
 ```
+
+### eslint tslint prettier配置
+最后选择直接用AlloyTeam的配置规范
+[参考1](https://github.com/xcatliu/typescript-tutorial/blob/master/engineering/lint.md)
+[参考2](https://github.com/AlloyTeam/eslint-config-alloy/blob/master/README.zh-CN.md#vue)
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
