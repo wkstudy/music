@@ -1,14 +1,13 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import styleImport from 'vite-plugin-style-import';
 import legacy from '@vitejs/plugin-legacy';
 import path from 'path';
 import proxy from './proxy';
-const chalk = require("chalk");
+const chalk = require('chalk');
 
-
-const rd = process.env.npm_config_rd || 'default'
-console.log(chalk.blue("连接代理服务端： ") + chalk.cyan(rd) + '  ' + chalk.green(proxy[rd]));
+const rd = process.env.npm_config_rd || 'default';
+console.log(chalk.blue('连接代理服务端： ') + chalk.cyan(rd) + '  ' + chalk.green(proxy[rd]));
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -23,7 +22,7 @@ export default defineConfig({
       ],
     }),
     legacy({
-      targets: ['defaults', 'not IE 11']
+      targets: ['defaults', 'not IE 11'],
     }),
   ],
   resolve: {
@@ -49,18 +48,18 @@ export default defineConfig({
       {
         find: '@assets',
         replacement: path.resolve(__dirname, 'src/assets'),
-      }
+      },
     ],
-    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.d.ts']
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.d.ts'],
   },
   server: {
     cors: true,
     proxy: {
-      "/api/": {
+      '/api/': {
         rewrite: (path) => path.replace(/^\/api/, ''),
         target: proxy[rd],
-        changeOrigin: true
+        changeOrigin: true,
       },
-    }
-  }
-})
+    },
+  },
+});
