@@ -57,6 +57,7 @@ export default defineComponent({
       type: String as PropType<string>,
     },
     creator: Creator,
+    // TODO vue-cli里这里直接写会出错，需要改为 Object as Prototype<Creator>
   },
   setup(props) {
     const { bgImg, iconImg, playCount, title, creator } = toRefs(props);
