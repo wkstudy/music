@@ -9,4 +9,6 @@ import './assets/css/normalize.css'
 import 'lib-flexible';
 import './assets/css/lib.less'
 
+console.log(import.meta.env);
+
 createApp(App).use(router).use(store, key).use(Vant).mount('#app');

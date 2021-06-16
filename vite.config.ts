@@ -7,6 +7,8 @@ import proxy from './proxy';
 const chalk = require('chalk');
 
 const rd = process.env.npm_config_rd || 'default';
+// console.log('process', process.env);
+
 console.log(chalk.blue('连接代理服务端： ') + chalk.cyan(rd) + '  ' + chalk.green(proxy[rd]));
 // https://vitejs.dev/config/
 export default defineConfig({

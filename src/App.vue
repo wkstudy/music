@@ -2,7 +2,7 @@
   <router-view />
   <!-- 有播放器时防止把最下面的内容遮住 -->
   <div v-if="show" class="bottom-space"></div>
-  <mini-play></mini-play>
+  <mini-play/>
 </template>
 
 <script lang="ts">
